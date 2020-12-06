@@ -10,7 +10,7 @@ function App() {
 	 * Iodine (I) on the other hand will not overlap, so it gets added automatically.
 	 */
 	const [matches, setMatches] = useState([])
-	const [autoFillMatches, setAutoFillMatches] = useState([])
+	const [uniqueMatches, setUniqueMatches] = useState([])
 	const [currentInput, setCurrentInput] = useState("")
 	const [norwegian, setNorwegian] = useState(false)
 
@@ -19,49 +19,32 @@ function App() {
 		setCurrentInput(event.target.value)
 
 		const allMatches = elements
-			// Get all matching elements with all their information
-			.filter(element => lowerCaseName.includes(element.symbol.toLowerCase()))
-			// Sort by order in input name, rather than periodic table order
-			.sort((a, b) => {
+			.filter(function findElementInName(element) {
+				return lowerCaseName.includes(element.symbol.toLowerCase())
+			})
+			.sort(function sortElementsByOrderOfAppearance(a, b) {
 				const aIndex = lowerCaseName.indexOf(a.symbol.toLowerCase())
 				const bIndex = lowerCaseName.indexOf(b.symbol.toLowerCase())
 				return aIndex - bIndex
 			})
 
-		const uniqueMatches = allMatches.reduce((accumulator, currentElement, index, array) => {
-			if (index > 0 && index < array.length - 1) {
-				const previousElement = array[index - 1]
-				const nextElement = array[index + 1]
-
-				const prev = previousElement.symbol.toLowerCase()
-				const curr = currentElement.symbol.toLowerCase()
-				const next = nextElement.symbol.toLowerCase()
-
-				const previousReach = lowerCaseName.indexOf(prev) + prev.length - 1
-				const currentReach = lowerCaseName.indexOf(curr) + curr.length - 1
-
-				const currentIndex = lowerCaseName.indexOf(curr)
-				const nextIndex = lowerCaseName.indexOf(next)
-
-				if (index === 1 && previousReach < currentIndex) {
-
-				} else if (index === array.length - 2 && currentReach < nextIndex)
-
-					if (previousReach < currentIndex && currentReach < nextIndex) {
-						if (index === 1) {
-							accumulator.push(previousElement, currentElement)
-						} else if (index === array.length - 2) {
-							accumulator.push(currentElement, nextElement)
-						} else {
-							accumulator.push(currentElement)
-						}
-					}
-			}
-			return accumulator
-		}, [])
+		const noOverlap = allMatches
+			.map(function findIndexAndIndexPlusLenght(current) {
+				const indexInName = lowerCaseName.indexOf(current.symbol.toLowerCase())
+				const indexInNamePlusLength = indexInName + current.symbol.length - 1
+				return { match: current, indexInName, indexInNamePlusLength }
+			})
+			.filter((currentElement, index, array) => {
+				const otherElements = [...array.slice(0, index), ...array.slice(index + 1)]
+				return otherElements.every(e => {
+					const previousDoesntOverlapCurrent = (e.indexInNamePlusLength !== currentElement.indexInName)
+					const currentDoesntOverlapNext = (e.indexInName !== currentElement.indexInNamePlusLength)
+					return previousDoesntOverlapCurrent && currentDoesntOverlapNext
+				})
+			}).map(e => e.match)
 
 		setMatches(allMatches)
-		setAutoFillMatches(uniqueMatches)
+		setUniqueMatches(noOverlap)
 	}
 
 	function toggleNorsk(event) {
@@ -71,27 +54,25 @@ function App() {
 
 	return (
 		<div className="App">
-			<NorskToggle htmlFor="norsk">
+			{/* <NorskToggle htmlFor="norsk">
 				🇳🇴 Norske elementnavn, takk!
-				<input type="checkbox" name="norsk" id="norsk" onChange={toggleNorsk} />
-			</NorskToggle>
-
-			<hr />
+				<input type="checkbox" name="norsk" id="norsk" onChange={toggleNorsk} autoFocus />
+			</NorskToggle> */}
 
 			<input type="text" name="query" id="query" onChange={getMatches} autoFocus />
 
 			<div className="all-matches">
 				<h1>All matches</h1>
-				{matches.map(e => <p>({e.number}) {e.name} ({e.symbol})</p>)}
+				{matches.map(e => <p>({e.number}) {e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
 			</div>
 			<div className="unique-matches">
-				<h1>Unique matches</h1>
-				{autoFillMatches.map(e => <p>({e.number}) {e.name} ({e.symbol})</p>)}
+				<h1>Matches without overlap</h1>
+				{uniqueMatches.map(e => <p>({e.number}) {e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
 			</div>
 
-			<div className="characters">
+			{/* <div className="characters">
 				<pre>{currentInput}</pre>
-			</div>
+			</div> */}
 		</div>
 	);
 }

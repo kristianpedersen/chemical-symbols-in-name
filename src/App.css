@@ -1,5 +1,11 @@
+span.symbol {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+}
+
 .App {
   text-align: center;
+  padding-top: 1rem;
 }
 
 .App-logo {
