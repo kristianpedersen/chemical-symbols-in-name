@@ -63,7 +63,7 @@ function App() {
 			<input type="text" name="query" id="query" onChange={getMatches} autoFocus ref={input} />
 
 			<div className="all-matches">
-				<h1>{norwegian ? "Navnet ditt består av" : "Your elements"}</h1>
+				<h1>{norwegian ? "Navnet ditt består av:" : "Your name is made up of:"}</h1>
 				{matches.map(e => <p>({e.number}) {norwegian ? e.norsk || e.name : e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
 			</div>
 
