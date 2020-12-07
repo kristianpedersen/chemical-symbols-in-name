@@ -1,0 +1,14 @@
+// JavaScript
+
+function openDictionary(elementName) {
+	// Open a window showing dictionary entry for element (with audio pronunciation)
+	elementName = elementName.toLowerCase();
+	var urlDictionary = "https://www.merriam-webster.com/dictionary/";
+	var suffix = "";
+	if (elementName == "lead") {
+		// Special case for "lead". Try to find the entry for the element, not the verb.
+		suffix="#dictionary-entry-4";
+	}
+	var win = window.open(urlDictionary + elementName + suffix, "dictionary");
+	if (win) win.focus();
+}

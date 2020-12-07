@@ -1,0 +1,9 @@
+// JavaScript
+
+function openSearch(keywords) {
+	// Open a window to search for keywords
+	var urlSearch = "http://www.google.com/search?hl=en&q=";
+	var keywordsEncoded = keywords.replace(/ /g,"+").replace(/["]/g,"%22").replace(/[']/g,"%27");
+	var win = window.open(urlSearch + keywordsEncoded, "search");
+	if (win) win.focus();
+}
