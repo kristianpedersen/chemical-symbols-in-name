@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/chemical-symbols-in-name/static/css/main.902a234d.chunk.css",
-    "main.js": "/chemical-symbols-in-name/static/js/main.7ad1f250.chunk.js",
-    "main.js.map": "/chemical-symbols-in-name/static/js/main.7ad1f250.chunk.js.map",
+    "main.js": "/chemical-symbols-in-name/static/js/main.ac7701f8.chunk.js",
+    "main.js.map": "/chemical-symbols-in-name/static/js/main.ac7701f8.chunk.js.map",
     "runtime-main.js": "/chemical-symbols-in-name/static/js/runtime-main.59df640a.js",
     "runtime-main.js.map": "/chemical-symbols-in-name/static/js/runtime-main.59df640a.js.map",
     "static/js/2.0519733c.chunk.js": "/chemical-symbols-in-name/static/js/2.0519733c.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.59df640a.js",
     "static/js/2.0519733c.chunk.js",
     "static/css/main.902a234d.chunk.css",
-    "static/js/main.7ad1f250.chunk.js"
+    "static/js/main.ac7701f8.chunk.js"
   ]
 }
