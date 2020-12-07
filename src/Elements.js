@@ -69,6 +69,7 @@ const elements = [
 	},
 	{
 		"name": "Lithium",
+		"norsk": "Litium",
 		"appearance": "silvery-white",
 		"atomic_mass": 6.94,
 		"boil": 1603,
@@ -142,6 +143,7 @@ const elements = [
 	},
 	{
 		"name": "Boron",
+		"norsk": "Bor",
 		"appearance": "black-brown",
 		"atomic_mass": 10.81,
 		"boil": 4200,
@@ -179,7 +181,7 @@ const elements = [
 		"cpk-hex": "ffb5b5"
 	},
 	{
-		"name": "Carbon",
+		"name": "Karbon",
 		"appearance": null,
 		"atomic_mass": 12.011,
 		"boil": null,
@@ -259,6 +261,7 @@ const elements = [
 	},
 	{
 		"name": "Oxygen",
+		"norsk": "Oksygen",
 		"appearance": null,
 		"atomic_mass": 15.999,
 		"boil": 90.188,
@@ -300,6 +303,7 @@ const elements = [
 	},
 	{
 		"name": "Fluorine",
+		"norsk": "Fluor",
 		"appearance": null,
 		"atomic_mass": 18.9984031636,
 		"boil": 85.03,
@@ -385,6 +389,7 @@ const elements = [
 	},
 	{
 		"name": "Sodium",
+		"norsk": "Natrium",
 		"appearance": "silvery white metallic",
 		"atomic_mass": 22.989769282,
 		"boil": 1156.09,
@@ -523,6 +528,7 @@ const elements = [
 	},
 	{
 		"name": "Silicon",
+		"norsk": "Silisium",
 		"appearance": "crystalline, reflective with bluish-tinged faces",
 		"atomic_mass": 28.085,
 		"boil": 3538,
@@ -571,6 +577,7 @@ const elements = [
 	},
 	{
 		"name": "Phosphorus",
+		"norsk": "Fosfor",
 		"appearance": "colourless, waxy white, yellow, scarlet, red, violet, black",
 		"atomic_mass": 30.9737619985,
 		"boil": null,
@@ -620,6 +627,7 @@ const elements = [
 	},
 	{
 		"name": "Sulfur",
+		"norsk": "Svovel",
 		"appearance": "lemon yellow sintered microcrystals",
 		"atomic_mass": 32.06,
 		"boil": 717.8,
@@ -670,6 +678,7 @@ const elements = [
 	},
 	{
 		"name": "Chlorine",
+		"norsk": "Klor",
 		"appearance": "pale yellow-green gas",
 		"atomic_mass": 35.45,
 		"boil": 239.11,
@@ -773,6 +782,7 @@ const elements = [
 	},
 	{
 		"name": "Potassium",
+		"norsk": "Kalium",
 		"appearance": "silvery gray",
 		"atomic_mass": 39.09831,
 		"boil": 1032,
@@ -827,6 +837,7 @@ const elements = [
 	},
 	{
 		"name": "Calcium",
+		"norsk": "Kalsium",
 		"appearance": null,
 		"atomic_mass": 40.0784,
 		"boil": 1757,
@@ -938,6 +949,7 @@ const elements = [
 	},
 	{
 		"name": "Titanium",
+		"norsk": "Titan",
 		"appearance": "silvery grey-white metallic",
 		"atomic_mass": 47.8671,
 		"boil": 3560,
@@ -1053,6 +1065,7 @@ const elements = [
 	},
 	{
 		"name": "Chromium",
+		"norsk": "Krom",
 		"appearance": "silvery metallic",
 		"atomic_mass": 51.99616,
 		"boil": 2944,
@@ -1112,6 +1125,7 @@ const elements = [
 	},
 	{
 		"name": "Manganese",
+		"norsk": "Mangan",
 		"appearance": "silvery metallic",
 		"atomic_mass": 54.9380443,
 		"boil": 2334,
@@ -1172,6 +1186,7 @@ const elements = [
 	},
 	{
 		"name": "Iron",
+		"norsk": "Jern",
 		"appearance": "lustrous metallic with a grayish tinge",
 		"atomic_mass": 55.8452,
 		"boil": 3134,
@@ -1233,6 +1248,7 @@ const elements = [
 	},
 	{
 		"name": "Cobalt",
+		"norsk": "Kobolt",
 		"appearance": "hard lustrous gray metal",
 		"atomic_mass": 58.9331944,
 		"boil": 3200,
@@ -1295,6 +1311,7 @@ const elements = [
 	},
 	{
 		"name": "Nickel",
+		"norsk": "Nikkel",
 		"appearance": "lustrous, metallic, and silver with a gold tinge",
 		"atomic_mass": 58.69344,
 		"boil": 3003,
@@ -1358,6 +1375,7 @@ const elements = [
 	},
 	{
 		"name": "Copper",
+		"norsk": "Kobber",
 		"appearance": "red-orange metallic luster",
 		"atomic_mass": 63.5463,
 		"boil": 2835,
@@ -1422,6 +1440,7 @@ const elements = [
 	},
 	{
 		"name": "Zinc",
+		"norsk": "Sink",
 		"appearance": "silver-gray",
 		"atomic_mass": 65.382,
 		"boil": 1180,
@@ -1557,6 +1576,7 @@ const elements = [
 	},
 	{
 		"name": "Arsenic",
+		"norsk": "Arsen",
 		"appearance": "metallic grey",
 		"atomic_mass": 74.9215956,
 		"boil": null,
@@ -1598,6 +1618,7 @@ const elements = [
 	},
 	{
 		"name": "Selenium",
+		"norsk": "Selen",
 		"appearance": "black, red, and gray (not pictured) allotropes",
 		"atomic_mass": 78.9718,
 		"boil": 958,
@@ -1640,6 +1661,7 @@ const elements = [
 	},
 	{
 		"name": "Bromine",
+		"norsk": "Brom",
 		"appearance": null,
 		"atomic_mass": 79.904,
 		"boil": 332,
@@ -1889,6 +1911,7 @@ const elements = [
 	},
 	{
 		"name": "Zirconium",
+		"norsk": "Zirkonium",
 		"appearance": "silvery white",
 		"atomic_mass": 91.2242,
 		"boil": 4650,
@@ -1931,6 +1954,7 @@ const elements = [
 	},
 	{
 		"name": "Niobium",
+		"norsk": "Niob",
 		"appearance": "gray metallic, bluish when oxidized",
 		"atomic_mass": 92.906372,
 		"boil": 5017,
@@ -1974,6 +1998,7 @@ const elements = [
 	},
 	{
 		"name": "Molybdenum",
+		"norsk": "Molybden",
 		"appearance": "gray metallic",
 		"atomic_mass": 95.951,
 		"boil": 4912,
@@ -2195,6 +2220,7 @@ const elements = [
 	},
 	{
 		"name": "Silver",
+		"norsk": "Sølv",
 		"appearance": "lustrous white metal",
 		"atomic_mass": 107.86822,
 		"boil": 2435,
@@ -2234,6 +2260,7 @@ const elements = [
 	},
 	{
 		"name": "Cadmium",
+		"norsk": "Kadmium",
 		"appearance": "silvery bluish-gray metallic",
 		"atomic_mass": 112.4144,
 		"boil": 1040,
@@ -2313,6 +2340,7 @@ const elements = [
 	},
 	{
 		"name": "Tin",
+		"norsk": "Tinn",
 		"appearance": "silvery-white (beta, β) or gray (alpha, α)",
 		"atomic_mass": 118.7107,
 		"boil": 2875,
@@ -2354,6 +2382,7 @@ const elements = [
 	},
 	{
 		"name": "Antimony",
+		"norsk": "Antimon",
 		"appearance": "silvery lustrous gray",
 		"atomic_mass": 121.7601,
 		"boil": 1908,
@@ -2396,6 +2425,7 @@ const elements = [
 	},
 	{
 		"name": "Tellurium",
+		"norsk": "Tellur",
 		"appearance": null,
 		"atomic_mass": 127.603,
 		"boil": 1261,
@@ -2439,6 +2469,7 @@ const elements = [
 	},
 	{
 		"name": "Iodine",
+		"norsk": "Jod",
 		"appearance": "lustrous metallic gray, violet as a gas",
 		"atomic_mass": 126.904473,
 		"boil": 457.4,
@@ -2597,6 +2628,7 @@ const elements = [
 	},
 	{
 		"name": "Lanthanum",
+		"norsk": "Lantan",
 		"appearance": "silvery white",
 		"atomic_mass": 138.905477,
 		"boil": 3737,
@@ -2682,6 +2714,7 @@ const elements = [
 	},
 	{
 		"name": "Praseodymium",
+		"norsk": "Praseodym",
 		"appearance": "grayish white",
 		"atomic_mass": 140.907662,
 		"boil": 3403,
@@ -2724,6 +2757,7 @@ const elements = [
 	},
 	{
 		"name": "Neodymium",
+		"norsk": "Neodym",
 		"appearance": "silvery white",
 		"atomic_mass": 144.2423,
 		"boil": 3347,
@@ -3258,6 +3292,7 @@ const elements = [
 	},
 	{
 		"name": "Tantalum",
+		"norsk": "Tantal",
 		"appearance": "gray blue",
 		"atomic_mass": 180.947882,
 		"boil": 5731,
@@ -3297,6 +3332,7 @@ const elements = [
 	},
 	{
 		"name": "Tungsten",
+		"norsk": "Wolfram",
 		"appearance": "grayish white, lustrous",
 		"atomic_mass": 183.841,
 		"boil": 6203,
@@ -3455,6 +3491,7 @@ const elements = [
 	},
 	{
 		"name": "Platinum",
+		"norsk": "Platina",
 		"appearance": "silvery white",
 		"atomic_mass": 195.0849,
 		"boil": 4098,
@@ -3494,6 +3531,7 @@ const elements = [
 	},
 	{
 		"name": "Gold",
+		"norsk": "Gull",
 		"appearance": "metallic yellow",
 		"atomic_mass": 196.9665695,
 		"boil": 3243,
@@ -3533,6 +3571,7 @@ const elements = [
 	},
 	{
 		"name": "Mercury",
+		"name": "Kvikksølv",
 		"appearance": "silvery",
 		"atomic_mass": 200.5923,
 		"boil": 629.88,
@@ -3613,6 +3652,7 @@ const elements = [
 	},
 	{
 		"name": "Lead",
+		"norsk": "Bly",
 		"appearance": "metallic gray",
 		"atomic_mass": 207.21,
 		"boil": 2022,
@@ -3655,6 +3695,7 @@ const elements = [
 	},
 	{
 		"name": "Bismuth",
+		"norsk": "Vismut",
 		"appearance": "lustrous silver",
 		"atomic_mass": 208.980401,
 		"boil": 1837,
@@ -3736,6 +3777,7 @@ const elements = [
 	},
 	{
 		"name": "Astatine",
+		"norsk": "Astat",
 		"appearance": "unknown, probably metallic",
 		"atomic_mass": 210,
 		"boil": 610,
@@ -4012,6 +4054,7 @@ const elements = [
 	},
 	{
 		"name": "Uranium",
+		"norsk": "Uran",
 		"appearance": null,
 		"atomic_mass": 238.028913,
 		"boil": 4404,
@@ -4742,6 +4785,7 @@ const elements = [
 	},
 	{
 		"name": "Roentgenium",
+		"norsk": "Røntgenium",
 		"appearance": null,
 		"atomic_mass": 282,
 		"boil": null,
@@ -4964,6 +5008,7 @@ const elements = [
 	},
 	{
 		"name": "Tennessine",
+		"norsk": "Tenness",
 		"appearance": null,
 		"atomic_mass": 294,
 		"boil": 883,

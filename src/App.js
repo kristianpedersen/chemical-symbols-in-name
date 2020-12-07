@@ -1,7 +1,7 @@
 import './App.css';
 import elements from "./Elements"
 import styled from "styled-components"
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 function App() {
 	/**
@@ -13,6 +13,7 @@ function App() {
 	const [uniqueMatches, setUniqueMatches] = useState([])
 	const [currentInput, setCurrentInput] = useState("")
 	const [norwegian, setNorwegian] = useState(false)
+	const input = useRef(null)
 
 	function getMatches(event) {
 		const lowerCaseName = event.target.value.toLowerCase()
@@ -47,30 +48,31 @@ function App() {
 		setUniqueMatches(noOverlap)
 	}
 
-	function toggleNorsk(event) {
+	function toggleNorsk() {
 		setNorwegian(!norwegian)
-		event.target.checked = norwegian
+		input.current.checked = norwegian
 	}
 
 	return (
 		<div className="App">
-			{/* <NorskToggle htmlFor="norsk">
-				🇳🇴 Norske elementnavn, takk!
+			<NorskToggle htmlFor="norsk">
+				🇳🇴 Norsk
 				<input type="checkbox" name="norsk" id="norsk" onChange={toggleNorsk} autoFocus />
-			</NorskToggle> */}
+			</NorskToggle>
 
-			<input type="text" name="query" id="query" onChange={getMatches} autoFocus />
+			<input type="text" name="query" id="query" onChange={getMatches} autoFocus ref={input} />
 
 			<div className="all-matches">
-				<h1>All matches</h1>
-				{matches.map(e => <p>({e.number}) {e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
-			</div>
-			<div className="unique-matches">
-				<h1>Matches without overlap</h1>
-				{uniqueMatches.map(e => <p>({e.number}) {e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
+				<h1>{norwegian ? "Navnet ditt består av" : "Your elements"}</h1>
+				{matches.map(e => <p>({e.number}) {norwegian ? e.norsk || e.name : e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
 			</div>
 
-			{/* <div className="characters">
+			{/* <div className="unique-matches">
+				{uniqueMatches.length > 1 && <h1>{norwegian ? "Forhåndsvalgte treff uten overlapp" : "Pre-selected matches without overlap"}</h1>}
+				{uniqueMatches.map(e => <p>({e.number}) {norwegian ? e.norsk || e.name : e.name} (<span className="symbol">{e.symbol}</span>)</p>)}
+			</div>
+
+			<div className="characters">
 				<pre>{currentInput}</pre>
 			</div> */}
 		</div>
