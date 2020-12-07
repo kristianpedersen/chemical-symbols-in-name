@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="utf-8">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!-- Template Params -->
+<!-- InstanceParam name="title" type="text" value="Interactive Periodic Table of the Elements, in Pictures and Words" -->
+<!-- InstanceParam name="description" type="text" value="Interactive Periodic Table of the Elements, in Pictures and Words" -->
+<!-- InstanceParam name="keywords" type="text" value="periodic table, elements, atoms, chemistr" -->
+<!-- InstanceParam name="copyrighted" type="boolean" value="true" -->
+<!-- InstanceParam name="year_created" type="text" value="2005" -->
+<!-- InstanceParam name="year_modified" type="text" value="2016" -->
+<!-- InstanceParam name="creator" type="text" value="Keith Enevoldsen" -->
+<!-- InstanceParam name="identifier" type="text" value="elements.wlonk.com" -->
+<!-- InstanceParam name="license_type" type="text" value="CC BY-SA 4.0" -->
+<!-- InstanceParam name="show_ownership" type="boolean" value="true" -->
+<!-- InstanceParam name="show_license" type="boolean" value="true" -->
+<!-- InstanceParam name="viewport" type="boolean" value="false" -->
+<!-- InstanceParam name="body_class" type="text" value="casual-font" -->
+<!-- InstanceParam name="body_div_class" type="text" value="body-div-640-1000" -->
+<!-- InstanceParam name="header_navbar" type="boolean" value="true" -->
+<!-- InstanceParam name="footer_navbar" type="boolean" value="false" -->
+<title>Interactive Periodic Table of the Elements, in Pictures and Words</title>
+<meta name="description" content="Interactive Periodic Table of the Elements, in Pictures and Words">
+<meta name="keywords" content="periodic table, elements, atoms, chemistr">
+<meta name="author" content="Keith Enevoldsen">
+<!-- InstanceBeginEditable name="head_1" --><!-- InstanceEndEditable -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Paytone+One">
+<link rel="stylesheet" href="https://fontlibrary.org/face/comic-relief">
+<link rel="stylesheet" href="ElementsStyle.css?ver=2.6">
+<!-- InstanceBeginEditable name="head_2" -->
+<link rel="stylesheet" href="ElementsTable.css?ver=2.4">
+<script src="ElementsUtil.js?ver=2.4"></script>
+<script src="ElementsData.js?ver=2.4"></script>
+<script src="ElementsMap.js?ver=2.4"></script>
+<script src="ElementsTable.js?ver=2.4"></script>
+<script src="ElementsDictionary.js?ver=2.4"></script>
+<!-- InstanceEndEditable -->
+<!-- Begin Favicons -->
+<link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicon-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="favicon-160x160.png" sizes="160x160">
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+<meta name="msapplication-TileColor" content="#00aba9">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<!-- End Favicons -->
+</head>
+<body class="casual-font">
+<div class="body-div-640-1000">
+  <header>
+    <div class="center">
+      <a href="index.htm"><img alt="elements.wlonk.com" src="elements_wlonk.png"></a>
+    </div>
+    <!-- InstanceBeginEditable name="header_1" --> <!-- InstanceEndEditable -->
+	
+    <nav>
+      <div class="navbar center">
+        <ul>
+          <li><a href="index.htm">Home/Printables</a></li>
+          <li><a href="ElementsTable.htm">Interactive</a></li>
+          <li><a href="ElementUses.htm">Uses</a></li>
+          <li><a href="ElementsLinks.htm"><img alt="globe" src="images/globe-16x16.png" class="icon-prefix">Links</a></li>
+          <li><a href="ElementsBuy.htm">Buy</a></li>
+          <li><a href="ElementsDonate.htm">Donate</a></li>
+          <li><a href="ElementsPrintingTips.htm">Printing Tips</a></li>
+          <li><a href="ElementsTermsOfUse.htm">Terms of Use</a></li>
+          <li><a href="ElementsContact.htm">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    
+	<!-- InstanceBeginEditable name="header_2" --> <!-- InstanceEndEditable -->
+  </header>
+  <!-- InstanceBeginEditable name="main" -->
+  <main>
+    <div id="elementsContainer">
+      <img id="elementsImg" usemap="#elementsMap" src="Elements_Pics_Clickable_w1000.png" alt="" class="resizable" style="border:none;">
+      <div id="keyBox1" class="keyBox">
+        <img id="keyImg1" class="keyImg" src="elems_key/elements_box_key.png" alt="" title=""
+             onClick="javascript:showPopup(this.src, false);">
+      </div>
+      <div id="keyBox2" class="keyBox">
+        <img id="keyImg2" class="keyImg" src="elems_key/elements_symbol_key.png" alt="" title=""
+             onClick="javascript:showPopup(this.src, false);">
+      </div>
+      <div id="keyBox3" class="keyBox">
+        <img id="keyImg3" class="keyImg" src="elems_key/elements_color_key_horiz.png" alt="" title=""
+             onClick="javascript:showPopup(this.src, true);">
+      </div>
+      <div id="popupBox1" class="popupBox">
+        <img id="popupImg1" class="popupImg" src="index.html" onClick="javascript:hidePopup();" alt="" title="">
+      </div>
+      <div id="auxBox1" class="auxBox">
+        <a href="javascript:showKey();" title="Show key boxes">Key</a>
+      </div>
+      <div id="auxBox2" class="auxBox">
+        <a href="javascript:showInfoBox();" title="Show info boxes">Info</a>
+      </div>
+      <div id="auxBox3" class="auxBox">
+        <span title="Click any element or info box">Click it!</span>
+      </div>
+      <div id="speakerBox1" class="speakerBox">
+        <img src="images/speaker-24x24.png" alt="audio" title="Go to dictionary for pronunciation" onclick="javascript:clickSpeaker();">
+      </div>
+    </div>
+    <map id="elementsMap" name="elementsMap">
+      <area id="elem1" shape="rect" coords="0,0,1,1" href="javascript:showElem(1);" alt="Hydrogen" title="">
+      <area id="elem2" shape="rect" coords="0,0,1,1" href="javascript:showElem(2);" alt="Helium" title="">
+      <area id="elem3" shape="rect" coords="0,0,1,1" href="javascript:showElem(3);" alt="Lithium" title="">
+      <area id="elem4" shape="rect" coords="0,0,1,1" href="javascript:showElem(4);" alt="Beryllium" title="">
+      <area id="elem5" shape="rect" coords="0,0,1,1" href="javascript:showElem(5);" alt="Boron" title="">
+      <area id="elem6" shape="rect" coords="0,0,1,1" href="javascript:showElem(6);" alt="Carbon" title="">
+      <area id="elem7" shape="rect" coords="0,0,1,1" href="javascript:showElem(7);" alt="Nitrogen" title="">
+      <area id="elem8" shape="rect" coords="0,0,1,1" href="javascript:showElem(8);" alt="Oxygen" title="">
+      <area id="elem9" shape="rect" coords="0,0,1,1" href="javascript:showElem(9);" alt="Fluorine" title="">
+      <area id="elem10" shape="rect" coords="0,0,1,1" href="javascript:showElem(10);" alt="Neon" title="">
+      <area id="elem11" shape="rect" coords="0,0,1,1" href="javascript:showElem(11);" alt="Sodium" title="">
+      <area id="elem12" shape="rect" coords="0,0,1,1" href="javascript:showElem(12);" alt="Magnesium" title="">
+      <area id="elem13" shape="rect" coords="0,0,1,1" href="javascript:showElem(13);" alt="Aluminum" title="">
+      <area id="elem14" shape="rect" coords="0,0,1,1" href="javascript:showElem(14);" alt="Silicon" title="">
+      <area id="elem15" shape="rect" coords="0,0,1,1" href="javascript:showElem(15);" alt="Phosphorus" title="">
+      <area id="elem16" shape="rect" coords="0,0,1,1" href="javascript:showElem(16);" alt="Sulfur" title="">
+      <area id="elem17" shape="rect" coords="0,0,1,1" href="javascript:showElem(17);" alt="Chlorine" title="">
+      <area id="elem18" shape="rect" coords="0,0,1,1" href="javascript:showElem(18);" alt="Argon" title="">
+      <area id="elem19" shape="rect" coords="0,0,1,1" href="javascript:showElem(19);" alt="Potassium" title="">
+      <area id="elem20" shape="rect" coords="0,0,1,1" href="javascript:showElem(20);" alt="Calcium" title="">
+      <area id="elem21" shape="rect" coords="0,0,1,1" href="javascript:showElem(21);" alt="Scandium" title="">
+      <area id="elem22" shape="rect" coords="0,0,1,1" href="javascript:showElem(22);" alt="Titanium" title="">
+      <area id="elem23" shape="rect" coords="0,0,1,1" href="javascript:showElem(23);" alt="Vanadium" title="">
+      <area id="elem24" shape="rect" coords="0,0,1,1" href="javascript:showElem(24);" alt="Chromium" title="">
+      <area id="elem25" shape="rect" coords="0,0,1,1" href="javascript:showElem(25);" alt="Manganese" title="">
+      <area id="elem26" shape="rect" coords="0,0,1,1" href="javascript:showElem(26);" alt="Iron" title="">
+      <area id="elem27" shape="rect" coords="0,0,1,1" href="javascript:showElem(27);" alt="Cobalt" title="">
+      <area id="elem28" shape="rect" coords="0,0,1,1" href="javascript:showElem(28);" alt="Nickel" title="">
+      <area id="elem29" shape="rect" coords="0,0,1,1" href="javascript:showElem(29);" alt="Copper" title="">
+      <area id="elem30" shape="rect" coords="0,0,1,1" href="javascript:showElem(30);" alt="Zinc" title="">
+      <area id="elem31" shape="rect" coords="0,0,1,1" href="javascript:showElem(31);" alt="Gallium" title="">
+      <area id="elem32" shape="rect" coords="0,0,1,1" href="javascript:showElem(32);" alt="Germanium" title="">
+      <area id="elem33" shape="rect" coords="0,0,1,1" href="javascript:showElem(33);" alt="Arsenic" title="">
+      <area id="elem34" shape="rect" coords="0,0,1,1" href="javascript:showElem(34);" alt="Selenium" title="">
+      <area id="elem35" shape="rect" coords="0,0,1,1" href="javascript:showElem(35);" alt="Bromine" title="">
+      <area id="elem36" shape="rect" coords="0,0,1,1" href="javascript:showElem(36);" alt="Krypton" title="">
+      <area id="elem37" shape="rect" coords="0,0,1,1" href="javascript:showElem(37);" alt="Rubidium" title="">
+      <area id="elem38" shape="rect" coords="0,0,1,1" href="javascript:showElem(38);" alt="Strontium" title="">
+      <area id="elem39" shape="rect" coords="0,0,1,1" href="javascript:showElem(39);" alt="Yttrium" title="">
+      <area id="elem40" shape="rect" coords="0,0,1,1" href="javascript:showElem(40);" alt="Zirconium" title="">
+      <area id="elem41" shape="rect" coords="0,0,1,1" href="javascript:showElem(41);" alt="Niobium" title="">
+      <area id="elem42" shape="rect" coords="0,0,1,1" href="javascript:showElem(42);" alt="Molybdenum" title="">
+      <area id="elem43" shape="rect" coords="0,0,1,1" href="javascript:showElem(43);" alt="Technetium" title="">
+      <area id="elem44" shape="rect" coords="0,0,1,1" href="javascript:showElem(44);" alt="Ruthenium" title="">
+      <area id="elem45" shape="rect" coords="0,0,1,1" href="javascript:showElem(45);" alt="Rhodium" title="">
+      <area id="elem46" shape="rect" coords="0,0,1,1" href="javascript:showElem(46);" alt="Palladium" title="">
+      <area id="elem47" shape="rect" coords="0,0,1,1" href="javascript:showElem(47);" alt="Silver" title="">
+      <area id="elem48" shape="rect" coords="0,0,1,1" href="javascript:showElem(48);" alt="Cadmium" title="">
+      <area id="elem49" shape="rect" coords="0,0,1,1" href="javascript:showElem(49);" alt="Indium" title="">
+      <area id="elem50" shape="rect" coords="0,0,1,1" href="javascript:showElem(50);" alt="Tin" title="">
+      <area id="elem51" shape="rect" coords="0,0,1,1" href="javascript:showElem(51);" alt="Antimony" title="">
+      <area id="elem52" shape="rect" coords="0,0,1,1" href="javascript:showElem(52);" alt="Tellurium" title="">
+      <area id="elem53" shape="rect" coords="0,0,1,1" href="javascript:showElem(53);" alt="Iodine" title="">
+      <area id="elem54" shape="rect" coords="0,0,1,1" href="javascript:showElem(54);" alt="Xenon" title="">
+      <area id="elem55" shape="rect" coords="0,0,1,1" href="javascript:showElem(55);" alt="Cesium" title="">
+      <area id="elem56" shape="rect" coords="0,0,1,1" href="javascript:showElem(56);" alt="Barium" title="">
+      <area id="elem57" shape="rect" coords="0,0,1,1" href="javascript:showElem(57);" alt="Lanthanum" title="">
+      <area id="elem58" shape="rect" coords="0,0,1,1" href="javascript:showElem(58);" alt="Cerium" title="">
+      <area id="elem59" shape="rect" coords="0,0,1,1" href="javascript:showElem(59);" alt="Praseodymium" title="">
+      <area id="elem60" shape="rect" coords="0,0,1,1" href="javascript:showElem(60);" alt="Neodymium" title="">
+      <area id="elem61" shape="rect" coords="0,0,1,1" href="javascript:showElem(61);" alt="Promethium" title="">
+      <area id="elem62" shape="rect" coords="0,0,1,1" href="javascript:showElem(62);" alt="Samarium" title="">
+      <area id="elem63" shape="rect" coords="0,0,1,1" href="javascript:showElem(63);" alt="Europium" title="">
+      <area id="elem64" shape="rect" coords="0,0,1,1" href="javascript:showElem(64);" alt="Gadolinium" title="">
+      <area id="elem65" shape="rect" coords="0,0,1,1" href="javascript:showElem(65);" alt="Terbium" title="">
+      <area id="elem66" shape="rect" coords="0,0,1,1" href="javascript:showElem(66);" alt="Dysprosium" title="">
+      <area id="elem67" shape="rect" coords="0,0,1,1" href="javascript:showElem(67);" alt="Holmium" title="">
+      <area id="elem68" shape="rect" coords="0,0,1,1" href="javascript:showElem(68);" alt="Erbium" title="">
+      <area id="elem69" shape="rect" coords="0,0,1,1" href="javascript:showElem(69);" alt="Thulium" title="">
+      <area id="elem70" shape="rect" coords="0,0,1,1" href="javascript:showElem(70);" alt="Ytterbium" title="">
+      <area id="elem71" shape="rect" coords="0,0,1,1" href="javascript:showElem(71);" alt="Lutetium" title="">
+      <area id="elem72" shape="rect" coords="0,0,1,1" href="javascript:showElem(72);" alt="Hafnium" title="">
+      <area id="elem73" shape="rect" coords="0,0,1,1" href="javascript:showElem(73);" alt="Tantalum" title="">
+      <area id="elem74" shape="rect" coords="0,0,1,1" href="javascript:showElem(74);" alt="Tungsten" title="">
+      <area id="elem75" shape="rect" coords="0,0,1,1" href="javascript:showElem(75);" alt="Rhenium" title="">
+      <area id="elem76" shape="rect" coords="0,0,1,1" href="javascript:showElem(76);" alt="Osmium" title="">
+      <area id="elem77" shape="rect" coords="0,0,1,1" href="javascript:showElem(77);" alt="Iridium" title="">
+      <area id="elem78" shape="rect" coords="0,0,1,1" href="javascript:showElem(78);" alt="Platinum" title="">
+      <area id="elem79" shape="rect" coords="0,0,1,1" href="javascript:showElem(79);" alt="Gold" title="">
+      <area id="elem80" shape="rect" coords="0,0,1,1" href="javascript:showElem(80);" alt="Mercury" title="">
+      <area id="elem81" shape="rect" coords="0,0,1,1" href="javascript:showElem(81);" alt="Thallium" title="">
+      <area id="elem82" shape="rect" coords="0,0,1,1" href="javascript:showElem(82);" alt="Lead" title="">
+      <area id="elem83" shape="rect" coords="0,0,1,1" href="javascript:showElem(83);" alt="Bismuth" title="">
+      <area id="elem84" shape="rect" coords="0,0,1,1" href="javascript:showElem(84);" alt="Polonium" title="">
+      <area id="elem85" shape="rect" coords="0,0,1,1" href="javascript:showElem(85);" alt="Astatine" title="">
+      <area id="elem86" shape="rect" coords="0,0,1,1" href="javascript:showElem(86);" alt="Radon" title="">
+      <area id="elem87" shape="rect" coords="0,0,1,1" href="javascript:showElem(87);" alt="Francium" title="">
+      <area id="elem88" shape="rect" coords="0,0,1,1" href="javascript:showElem(88);" alt="Radium" title="">
+      <area id="elem89" shape="rect" coords="0,0,1,1" href="javascript:showElem(89);" alt="Actinium" title="">
+      <area id="elem90" shape="rect" coords="0,0,1,1" href="javascript:showElem(90);" alt="Thorium" title="">
+      <area id="elem91" shape="rect" coords="0,0,1,1" href="javascript:showElem(91);" alt="Protactinium" title="">
+      <area id="elem92" shape="rect" coords="0,0,1,1" href="javascript:showElem(92);" alt="Uranium" title="">
+      <area id="elem93" shape="rect" coords="0,0,1,1" href="javascript:showElem(93);" alt="Neptunium" title="">
+      <area id="elem94" shape="rect" coords="0,0,1,1" href="javascript:showElem(94);" alt="Plutonium" title="">
+      <area id="elem95" shape="rect" coords="0,0,1,1" href="javascript:showElem(95);" alt="Americium" title="">
+      <area id="elem96" shape="rect" coords="0,0,1,1" href="javascript:showElem(96);" alt="Curium" title="">
+      <area id="elem97" shape="rect" coords="0,0,1,1" href="javascript:showElem(97);" alt="Berkelium" title="">
+      <area id="elem98" shape="rect" coords="0,0,1,1" href="javascript:showElem(98);" alt="Californium" title="">
+      <area id="elem99" shape="rect" coords="0,0,1,1" href="javascript:showElem(99);" alt="Einsteinium" title="">
+      <area id="elem100" shape="rect" coords="0,0,1,1" href="javascript:showElem(100);" alt="Fermium" title="">
+      <area id="elem101" shape="rect" coords="0,0,1,1" href="javascript:showElem(101);" alt="Mendelevium" title="">
+      <area id="elem102" shape="rect" coords="0,0,1,1" href="javascript:showElem(102);" alt="Nobelium" title="">
+      <area id="elem103" shape="rect" coords="0,0,1,1" href="javascript:showElem(103);" alt="Lawrencium" title="">
+      <area id="elem104" shape="rect" coords="0,0,1,1" href="javascript:showElem(104);" alt="Rutherfordium" title="">
+      <area id="elem105" shape="rect" coords="0,0,1,1" href="javascript:showElem(105);" alt="Dubnium" title="">
+      <area id="elem106" shape="rect" coords="0,0,1,1" href="javascript:showElem(106);" alt="Seaborgium" title="">
+      <area id="elem107" shape="rect" coords="0,0,1,1" href="javascript:showElem(107);" alt="Bohrium" title="">
+      <area id="elem108" shape="rect" coords="0,0,1,1" href="javascript:showElem(108);" alt="Hassium" title="">
+      <area id="elem109" shape="rect" coords="0,0,1,1" href="javascript:showElem(109);" alt="Meitnerium" title="">
+      <area id="elem110" shape="rect" coords="0,0,1,1" href="javascript:showElem(110);" alt="Darmstadtium" title="">
+      <area id="elem111" shape="rect" coords="0,0,1,1" href="javascript:showElem(111);" alt="Roentgenium" title="">
+      <area id="elem112" shape="rect" coords="0,0,1,1" href="javascript:showElem(112);" alt="Copernicium" title="">
+      <area id="elem113" shape="rect" coords="0,0,1,1" href="javascript:showElem(113);" alt="Nihonium" title="">
+      <area id="elem114" shape="rect" coords="0,0,1,1" href="javascript:showElem(114);" alt="Flerovium" title="">
+      <area id="elem115" shape="rect" coords="0,0,1,1" href="javascript:showElem(115);" alt="Moscovium" title="">
+      <area id="elem116" shape="rect" coords="0,0,1,1" href="javascript:showElem(116);" alt="Livermorium" title="">
+      <area id="elem117" shape="rect" coords="0,0,1,1" href="javascript:showElem(117);" alt="Tennessine" title="">
+      <area id="elem118" shape="rect" coords="0,0,1,1" href="javascript:showElem(118);" alt="Oganesson" title="">
+    </map>
+  </main>
+  <!-- InstanceEndEditable -->
+  <footer>
+    <!-- InstanceBeginEditable name="footer_1" --> <!-- InstanceEndEditable -->
+	
+      	  
+      <div id="copyright" vocab="http://purl.org/dc/terms/" class="center" >
+        <span property="title">Interactive Periodic Table of the Elements, in Pictures and Words</span>
+        <span property="rights">&copy; 
+          <span property="created">2005</span>-<span property="modified">2016</span>
+          <span property="creator">Keith Enevoldsen</span>
+        </span>
+        <span property="identifier">elements.wlonk.com</span>
+      </div>
+       
+      
+    
+   	
+      	  
+      <div class="center">
+        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a>
+        This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license" style="font-weight: normal;" >Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+      </div>
+      
+      
+    
+	
+    <div class="center">
+      <a class="display-font" href="index.htm">elements.wlonk.com</a>
+    </div>
+    <!-- InstanceBeginEditable name="footer_2" --> <!-- InstanceEndEditable -->
+  </footer>
+</div>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,45 @@
+// JavaScript
+
+// Load
+if (window.addEventListener) { 
+	window.addEventListener("load", doLoad);
+	window.addEventListener("hashchange", openDetailsByHash);
+} else if (window.attachEvent) { 
+	window.attachEvent("onload", doLoad);
+	window.attachEvent("onhashchange", openDetailsByHash);
+} else {
+	window.onload = doLoad;
+	window.onhashchange = openDetailsByHash;
+}
+
+function doLoad()
+{
+	openDetailsByHash();
+}
+
+// Open the element whose id matches the #hash and all of its descendents that are <details> elements.
+function openDetailsByHash()
+{
+	if (window.location.hash) {
+		var id = window.location.hash.substring(1);
+		if (id) {
+			setOpenDetailsTree(document.getElementById(id), true);
+		}
+	}
+}
+
+// Set the open attribute of the given element and all of its descendents that are <details> elements.
+function setOpenDetailsTree(element, isOpen)
+{
+	if (element) {
+		var tagName = element.tagName;
+		if (tagName && (tagName.toLowerCase() == "details")) {
+			element.open = isOpen;
+		}
+		var detailsElems = element.getElementsByTagName("details");
+		for (var i = 0; i < detailsElems.length; i++) {
+			detailsElems[i].open = isOpen;
+		}
+	}
+}
+

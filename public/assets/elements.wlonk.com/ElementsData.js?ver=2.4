@@ -1,0 +1,62 @@
+// JavaScript
+
+"use strict";
+
+var maxElem = 118;
+
+var elementNames =
+{
+	1: 'Hydrogen', 2: 'Helium', 3: 'Lithium', 4: 'Beryllium', 5: 'Boron',
+	6: 'Carbon', 7: 'Nitrogen', 8: 'Oxygen', 9: 'Fluorine', 10: 'Neon',
+	11: 'Sodium', 12: 'Magnesium', 13: 'Aluminum', 14: 'Silicon', 15: 'Phosphorus',
+	16: 'Sulfur', 17: 'Chlorine', 18: 'Argon', 19: 'Potassium', 20: 'Calcium',
+	21: 'Scandium', 22: 'Titanium', 23: 'Vanadium', 24: 'Chromium', 25: 'Manganese',
+	26: 'Iron', 27: 'Cobalt', 28: 'Nickel', 29: 'Copper', 30: 'Zinc',
+	31: 'Gallium', 32: 'Germanium', 33: 'Arsenic', 34: 'Selenium', 35: 'Bromine',
+	36: 'Krypton', 37: 'Rubidium', 38: 'Strontium', 39: 'Yttrium', 40: 'Zirconium',
+	41: 'Niobium', 42: 'Molybdenum', 43: 'Technetium', 44: 'Ruthenium', 45: 'Rhodium',
+	46: 'Palladium', 47: 'Silver', 48: 'Cadmium', 49: 'Indium', 50: 'Tin',
+	51: 'Antimony', 52: 'Tellurium', 53: 'Iodine', 54: 'Xenon', 55: 'Cesium',
+	56: 'Barium', 57: 'Lanthanum', 58: 'Cerium', 59: 'Praseodymium', 60: 'Neodymium',
+	61: 'Promethium', 62: 'Samarium', 63: 'Europium', 64: 'Gadolinium', 65: 'Terbium',
+	66: 'Dysprosium', 67: 'Holmium', 68: 'Erbium', 69: 'Thulium', 70: 'Ytterbium',
+	71: 'Lutetium', 72: 'Hafnium', 73: 'Tantalum', 74: 'Tungsten', 75: 'Rhenium',
+	76: 'Osmium', 77: 'Iridium', 78: 'Platinum', 79: 'Gold', 80: 'Mercury',
+	81: 'Thallium', 82: 'Lead', 83: 'Bismuth', 84: 'Polonium', 85: 'Astatine',
+	86: 'Radon', 87: 'Francium', 88: 'Radium', 89: 'Actinium', 90: 'Thorium',
+	91: 'Protactinium', 92: 'Uranium', 93: 'Neptunium', 94: 'Plutonium', 95: 'Americium',
+	96: 'Curium', 97: 'Berkelium', 98: 'Californium', 99: 'Einsteinium', 100: 'Fermium',
+	101: 'Mendelevium', 102: 'Nobelium', 103: 'Lawrencium', 104: 'Rutherfordium', 105: 'Dubnium',
+	106: 'Seaborgium', 107: 'Bohrium', 108: 'Hassium', 109: 'Meitnerium', 110: 'Darmstadtium',
+	111: 'Roentgenium', 112: 'Copernicium', 113: 'Nihonium', 114: 'Flerovium', 115: 'Moscovium',
+	116: 'Livermorium', 117: 'Tennessine', 118: 'Oganesson'
+}
+
+var groupByElemNum =
+{
+	1: 'hydrogen', 2: 'noble_gases', 3: 'alkali_metals', 4: 'alkali_earth_metals', 5: 'metalloids',
+	6: 'nonmetals', 7: 'nonmetals', 8: 'nonmetals', 9: 'halogens', 10: 'noble_gases',
+	11: 'alkali_metals', 12: 'alkali_earth_metals', 13: 'poor_metals', 14: 'metalloids', 15: 'nonmetals',
+	16: 'nonmetals', 17: 'halogens', 18: 'noble_gases', 19: 'alkali_metals', 20: 'alkali_earth_metals',
+	21: 'transition_metals', 22: 'transition_metals', 23: 'transition_metals', 24: 'transition_metals',	25: 'transition_metals',
+	26: 'transition_metals', 27: 'transition_metals', 28: 'transition_metals', 29: 'transition_metals', 30: 'transition_metals',
+	31: 'poor_metals', 32: 'metalloids', 33: 'metalloids', 34: 'nonmetals', 35: 'halogens',
+	36: 'noble_gases', 37: 'alkali_metals', 38: 'alkali_earth_metals', 39: 'transition_metals', 40: 'transition_metals',
+	41: 'transition_metals', 42: 'transition_metals', 43: 'transition_metals', 44: 'transition_metals', 45: 'transition_metals',
+	46: 'transition_metals', 47: 'transition_metals', 48: 'transition_metals', 49: 'poor_metals', 50: 'poor_metals',
+	51: 'metalloids', 52: 'metalloids', 53: 'halogens', 54: 'noble_gases', 55: 'alkali_metals',
+	56: 'alkali_earth_metals', 57: 'rare_earth_metals', 58: 'rare_earth_metals', 59: 'rare_earth_metals', 60: 'rare_earth_metals',
+	61: 'rare_earth_metals', 62: 'rare_earth_metals', 63: 'rare_earth_metals', 64: 'rare_earth_metals', 65: 'rare_earth_metals',
+	66: 'rare_earth_metals', 67: 'rare_earth_metals', 68: 'rare_earth_metals', 69: 'rare_earth_metals', 70: 'rare_earth_metals',
+	71: 'rare_earth_metals', 72: 'transition_metals', 73: 'transition_metals', 74: 'transition_metals', 75: 'transition_metals',
+	76: 'transition_metals', 77: 'transition_metals', 78: 'transition_metals', 79: 'transition_metals', 80: 'transition_metals',
+	81: 'poor_metals', 82: 'poor_metals', 83: 'poor_metals', 84: 'poor_metals', 85: 'halogens',
+	86: 'noble_gases', 87: 'alkali_metals', 88: 'alkali_earth_metals', 89: 'actinide_metals', 90: 'actinide_metals',
+	91: 'actinide_metals', 92: 'actinide_metals', 93: 'actinide_metals', 94: 'actinide_metals', 95: 'actinide_metals',
+	96: 'actinide_metals', 97: 'actinide_metals', 98: 'actinide_metals', 99: 'actinide_metals', 100: 'actinide_metals',
+	101: 'actinide_metals', 102: 'actinide_metals', 103: 'actinide_metals', 104: 'superheavy_elements', 105: 'superheavy_elements',
+	106: 'superheavy_elements', 107: 'superheavy_elements', 108: 'superheavy_elements', 109: 'superheavy_elements', 110: 'superheavy_elements',
+	111: 'superheavy_elements', 112: 'superheavy_elements', 113: 'superheavy_elements', 114: 'superheavy_elements', 115: 'superheavy_elements',
+	116: 'superheavy_elements', 117: 'superheavy_elements', 118: 'superheavy_elements'
+}
+

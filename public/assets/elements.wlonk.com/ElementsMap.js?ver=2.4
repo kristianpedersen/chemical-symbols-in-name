@@ -1,0 +1,81 @@
+// JavaScript
+
+"use strict";
+
+// Number of columna in the periodic table
+var numElemCols = 18;
+
+// For each element number: [row, column, offsetGroupIndex]
+var elementRowCol =
+{
+	1: [1, 1, 0], 2: [1, 18, 0], 3: [2, 1, 0], 4: [2, 2, 0], 5: [2, 13, 0],
+	6: [2, 14, 0], 7: [2, 15, 0], 8: [2, 16, 0], 9: [2, 17, 0], 10: [2, 18, 0],
+	11: [3, 1, 0], 12: [3, 2, 0], 13: [3, 13, 0], 14: [3, 14, 0], 15: [3, 15, 0],
+	16: [3, 16, 0], 17: [3, 17, 0], 18: [3, 18, 0], 19: [4, 1, 0], 20: [4, 2, 0],
+	21: [4, 3, 0], 22: [4, 4, 0], 23: [4, 5, 0], 24: [4, 6, 0], 25: [4, 7, 0],
+	26: [4, 8, 0], 27: [4, 9, 0], 28: [4, 10, 0], 29: [4, 11, 0], 30: [4, 12, 0],
+	31: [4, 13, 0], 32: [4, 14, 0], 33: [4, 15, 0], 34: [4, 16, 0], 35: [4, 17, 0],
+	36: [4, 18, 0], 37: [5, 1, 0], 38: [5, 2, 0], 39: [5, 3, 0], 40: [5, 4, 0],
+	41: [5, 5, 0], 42: [5, 6, 0], 43: [5, 7, 0], 44: [5, 8, 0], 45: [5, 9, 0],
+	46: [5, 10, 0], 47: [5, 11, 0], 48: [5, 12, 0], 49: [5, 13, 0], 50: [5, 14, 0],
+	51: [5, 15, 0], 52: [5, 16, 0], 53: [5, 17, 0], 54: [5, 18, 0], 55: [6, 1, 0],
+	56: [6, 2, 0], 57: [8, 4, 1], 58: [8, 5, 1], 59: [8, 6, 1], 60: [8, 7, 1],
+	61: [8, 8, 1], 62: [8, 9, 1], 63: [8, 10, 1], 64: [8, 11, 1], 65: [8, 12, 1],
+	66: [8, 13, 1], 67: [8, 14, 1], 68: [8, 15, 1], 69: [8, 16, 1], 70: [8, 17, 1],
+	71: [8, 18, 1], 72: [6, 4, 0], 73: [6, 5, 0], 74: [6, 6, 0], 75: [6, 7, 0],
+	76: [6, 8, 0], 77: [6, 9, 0], 78: [6, 10, 0], 79: [6, 11, 0], 80: [6, 12, 0],
+	81: [6, 13, 0], 82: [6, 14, 0], 83: [6, 15, 0], 84: [6, 16, 0], 85: [6, 17, 0],
+	86: [6, 18, 0], 87: [7, 1, 0], 88: [7, 2, 0], 89: [9, 4, 1], 90: [9, 5, 1],
+	91: [9, 6, 1], 92: [9, 7, 1], 93: [9, 8, 1], 94: [9, 9, 1], 95: [9, 10, 1],
+	96: [9, 11, 1], 97: [9, 12, 1], 98: [9, 13, 1], 99: [9, 14, 1], 100: [9, 15, 1],
+	101: [9, 16, 1], 102: [9, 17, 1], 103: [9, 18, 1], 104: [7, 4, 0], 105: [7, 5, 0],
+	106: [7, 6, 0], 107: [7, 7, 0], 108: [7, 8, 0], 109: [7, 9, 0], 110: [7, 10, 0],
+	111: [7, 11, 0], 112: [7, 12, 0], 113: [7, 13, 0], 114: [7, 14, 0], 115: [7, 15, 0],
+	116: [7, 16, 0], 117: [7, 17, 0], 118: [7, 18, 0]
+}
+
+// Recalculate clickable element rectangles in a periodic table image map.
+// Call this when the periodic table image is first loaded or after the image is resized.
+//
+// Args:
+// imageId: Id of the image (<img>) of the clickable periodic table 
+// mapId: Id of the map (<map>) used by the image
+// aspectRatio: Aspect ratio x/y of each element box (e.g. 3/4)
+// topMargin: Margin (within image) above row 1 (1 = box height)
+// leftMargin: Margin (within image) left of col 1 (1 = box width)
+// rightMargin: Margin (within image) right of last column 18 (1 = box width)
+// groupXYOffsets: Array of additional x-y offsets for each offset group.
+// (e.g. [[0,0],[0,.25]] means group 0 has no added offset and group 1 is offset downward 0.25 box height.
+// (additional offset groups are intended for offsetting lanthanides/actinides)
+function calcElemMap(imageId, mapId, aspectRatio, topMargin, leftMargin, rightMargin, groupXYOffsets)
+{
+	var img = document.getElementById(imageId);
+	var imageWidth = img.clientWidth;
+	var rectWidth = imageWidth / (numElemCols + leftMargin + rightMargin);
+	var rectHeight = rectWidth / aspectRatio;
+	var map = document.getElementById(mapId);
+	var areas = map.getElementsByTagName('area');
+	var numAreas = areas.length;
+	var i, elemNum;
+	var rowCol, row, col;
+	var offsetGroupIndex;
+	var x1, y1, x2, y2;
+
+	// Loop over all element rectangles
+	for (i = 0; i < numAreas; i++) {
+		// Get element number from area id (id is named like "elem2" for element 2)
+		elemNum = parseInt(areas[i].id.replace("elem",""));
+		// Get element row, column, and offset group
+		rowCol = elementRowCol[elemNum];
+		row = rowCol[0];
+		col = rowCol[1];
+		offsetGroupIndex = rowCol[2];
+		
+		// Calculate map area rectangle coordinates for one element
+		x1 = (col - 1 + leftMargin + groupXYOffsets[offsetGroupIndex][0]) * rectWidth;
+		y1 = (row - 1 + topMargin + groupXYOffsets[offsetGroupIndex][1]) * rectHeight;
+		x2 = x1 + rectWidth;
+		y2 = y1 + rectHeight;
+		areas[i].coords = [x1, y1, x2, y2];
+    }
+}

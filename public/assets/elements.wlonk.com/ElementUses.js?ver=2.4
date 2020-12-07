@@ -1,0 +1,46 @@
+// JavaScript
+
+"use strict";
+
+// Load
+if (window.addEventListener) { 
+    window.addEventListener("load", doLoad);
+    window.addEventListener("resize", doResize);
+} else if (window.attachEvent) { 
+    window.attachEvent("onload", doLoad);
+    window.attachEvent("onresize", doResize);
+} else {
+    window.onload = doLoad;
+    window.onresize = doResize;
+}
+
+function doLoad()
+{
+	calcElemMapSmall();
+}
+
+var resizeTimer;
+function doResize()
+{
+	// Do resize actions only after user is done resizing
+	var millisecs = 500;
+	clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(doResizeFinal, millisecs);
+}
+
+function doResizeFinal()
+{
+	calcElemMapSmall();
+}
+
+function calcElemMapSmall()
+{
+	var imageId = 'elementsImg';
+	var mapId = 'elementsMap'
+	var aspectRatio = 1;
+	var topMargin = .5;
+	var leftMargin = .5;
+	var rightMargin = .5;
+	var groupXYOffsets = [[0,0],[0,.5]];
+	calcElemMap(imageId, mapId, aspectRatio, topMargin, leftMargin, rightMargin, groupXYOffsets);
+}

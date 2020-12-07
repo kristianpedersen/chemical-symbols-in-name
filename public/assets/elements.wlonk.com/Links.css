@@ -1,0 +1,14 @@
+span.buy {
+	font-style: italic;
+	color: #CC6600;
+	margin-right: .5em;
+}
+span.free {
+	font-style: italic;
+	color: #006600;
+	margin-right: .5em;
+}
+span.note {
+	font-style: italic;
+	color: #666666;
+}

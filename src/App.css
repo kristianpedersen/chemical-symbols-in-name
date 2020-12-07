@@ -42,3 +42,9 @@ span.symbol {
     transform: rotate(360deg);
   }
 }
+
+pre {
+  font-size: 36px;
+  letter-spacing: 1rem;
+  color: green;
+}

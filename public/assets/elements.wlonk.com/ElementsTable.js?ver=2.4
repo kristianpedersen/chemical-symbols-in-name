@@ -1,0 +1,155 @@
+// JavaScript
+
+"use strict";
+
+var isPopupShown = false;
+var isKeyShown = true;
+var isInfoBoxShown = true;
+var currentElemNum = 0;
+
+// Load
+if (window.addEventListener) { 
+    window.addEventListener("load", doLoad);
+    window.addEventListener("resize", doResize);
+} else if (window.attachEvent) { 
+    window.attachEvent("onload", doLoad);
+    window.attachEvent("onresize", doResize);
+} else {
+    window.onload = doLoad;
+    window.onresize = doResize;
+}
+
+function doLoad()
+{
+	calcElemMapMain();
+	showKey();
+}
+
+var resizeTimer;
+function doResize()
+{
+	// Do resize actions only after user is done resizing
+	var millisecs = 500;
+	clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(doResizeFinal, millisecs);
+}
+
+function doResizeFinal()
+{
+	calcElemMapMain();
+}
+
+function calcElemMapMain()
+{
+	var imageId = 'elementsImg';
+	var mapId = 'elementsMap'
+	var aspectRatio = 3/4;
+	var topMargin = .5;
+	var leftMargin = 0;
+	var rightMargin = 0;
+	var groupXYOffsets = [[0,0],[0,1/8]];
+	calcElemMap(imageId, mapId, aspectRatio, topMargin, leftMargin, rightMargin, groupXYOffsets);
+}
+
+function showElem(elemNum)
+{
+	// Show element and group images
+	hidePopup();
+	currentElemNum = elemNum
+	var elemNumName = getElemNumStr(elemNum);
+	var groupName = groupByElemNum[elemNum];
+	var img1 = document.getElementById('keyImg1');
+	var img2 = document.getElementById('keyImg2');
+	var img3 = document.getElementById('keyImg3');
+	img1.src = "elems/" + elemNumName + ".png";
+	img2.src = "elems/" + elemNumName + "b" + ".png";
+	img3.src = "elem_groups/" + "group_desc_" + groupName + "_horiz.png";
+	isKeyShown = false;
+	isInfoBoxShown = false;
+	showSpeaker();
+}
+
+function showKey()
+{
+	// Show key images
+	hidePopup();
+	currentElemNum = 0;
+	var img1 = document.getElementById('keyImg1');
+	var img2 = document.getElementById('keyImg2');
+	var img3 = document.getElementById('keyImg3');
+	img1.src = "elems_key/elements_box_key.png";
+	img2.src = "elems_key/elements_symbol_key.png";
+	img3.src = "elems_key/elements_color_key_horiz.png";
+	isKeyShown = true;
+	isInfoBoxShown = false;
+	hideSpeaker();
+}
+
+function showInfoBox()
+{
+	// Show info box images
+	hidePopup();
+	currentElemNum = 0;
+	var img1 = document.getElementById('keyImg1');
+	var img2 = document.getElementById('keyImg2');
+	var img3 = document.getElementById('keyImg3');
+	img1.src = "elems_key/elements_box_key.png";
+	img2.src = "elems_key/elements_atoms_info.png";
+	img3.src = "elems_key/elements_bonding_info_horiz.png";
+	isKeyShown = false;
+	isInfoBoxShown = true;
+	hideSpeaker();
+}
+
+function showPopup(fileName, isHorizontal)
+{
+	hidePopup();
+	var div1 = document.getElementById('popupBox1');
+	var img1 = document.getElementById('popupImg1');
+	if (isKeyShown || isInfoBoxShown) {
+		if (isHorizontal) {
+			div1.style.width = "432px"; // 432=2*216
+		} else {
+			div1.style.width = "324px"; // 324=2*162
+		}
+	} else {
+		if (isHorizontal) {
+			div1.style.width = "324px"; // 324=1.5*216
+		} else {
+			div1.style.width = "243px"; // 243=1.5*162
+		}
+	}
+	img1.src = fileName;
+	div1.style.display = "block";
+	isPopupShown = true;
+}
+
+function hidePopup()
+{
+	if (!isPopupShown) return;
+	var div1 = document.getElementById('popupBox1');
+	var img1 = document.getElementById('popupImg1');
+	img1.src = "";
+	div1.style.display = "none";
+	isPopupShown = false;
+}
+
+function showSpeaker()
+{
+	var div1 = document.getElementById('speakerBox1');
+	div1.style.display = "block";
+}
+
+function hideSpeaker()
+{
+	var div1 = document.getElementById('speakerBox1');
+	div1.style.display = "none";
+}
+
+function clickSpeaker()
+{
+	if (!currentElemNum) return;
+	var elemName = elementNames[currentElemNum];
+	openDictionary(elemName);
+}
+
