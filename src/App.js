@@ -13,15 +13,21 @@ function App() {
 	 */
 	const input = useRef(null)
 	const [currentInput, setCurrentInput] = useState("")
+	const [elementName, setElementName] = useState("")
 	const [matches, setMatches] = useState([])
 	const [norwegian, setNorwegian] = useState(false)
+	const [selectedElements, setSelectedElements] = useState([])
+	const [takenIndices, setTakenIndices] = useState([])
 	const [uniqueMatches, setUniqueMatches] = useState([])
 
 	const allProps = {
 		input,
 		currentInput, setCurrentInput,
+		elementName, setElementName,
 		matches, setMatches,
 		norwegian, setNorwegian,
+		selectedElements, setSelectedElements,
+		takenIndices, setTakenIndices,
 		uniqueMatches, setUniqueMatches,
 	}
 
@@ -40,12 +46,12 @@ function App() {
 			})
 
 		const noOverlap = allMatches
-			.map(function findIndexAndIndexPlusLenght(current) {
+			.map(function findIndexAndReach(current) {
 				const indexInName = lowerCaseName.indexOf(current.symbol.toLowerCase())
 				const indexInNamePlusLength = indexInName + current.symbol.length - 1
 				return { match: current, indexInName, indexInNamePlusLength }
 			})
-			.filter((currentElement, index, array) => {
+			.filter(function removeIfOverlapping(currentElement, index, array) {
 				const otherElements = [...array.slice(0, index), ...array.slice(index + 1)]
 				return otherElements.every(e => {
 					const previousDoesntOverlapCurrent = (e.indexInNamePlusLength !== currentElement.indexInName)
@@ -56,6 +62,11 @@ function App() {
 
 		setMatches(allMatches)
 		setUniqueMatches(noOverlap)
+	}
+
+	function showMatchingElementsForLetter(character) {
+		const characterMatches = matches.filter(e => e.symbol.toLowerCase().includes(character))
+		setAvailableElements()
 	}
 
 	function toggleNorsk() {
@@ -73,37 +84,39 @@ function App() {
 			<input type="text" name="query" id="query" onKeyUp={getMatches} autoFocus ref={input} />
 
 			<div className="all-matches">
-				<h1>{norwegian ? `Hei, ${currentInput}! Navnet ditt består av:` : `Hi, ${currentInput}! Your name is made up of:`}</h1>
-				{matches.map(e => {
-					return (
-						<div className="element" style={{ display: "inline-block", padding: "0 .5rem 0 .5rem", margin: "0 .5rem 0 .5rem", border: "1px solid" }}>
-							<img src={`/assets/e${String(e.number).padStart(3, "0")}.png`} width={100} />
-							<h2>{norwegian ? e.norsk || e.name : e.name}</h2>
-							<p>({e.number}) (<span className="symbol">{e.symbol}</span>)</p>
-						</div>
-					)
-				})}
+				<h1>{norwegian ? `${currentInput} inneholder:` : `${currentInput} contains:`}</h1>
+				{matches.map(element => (
+					<Element {...{ allProps }} {...{ element }} />
+				))}
 				<p>
 					{norwegian ?
-						"Bilder hentet fra Keith Enevoldsens interaktive periodesystem: "
+						"Bilder: Keith Enevoldsens interaktive periodesystem: "
 						:
-						"Images retrieved from Keith Enevoldsen's interactive periodic table: "
+						"Images: Keith Enevoldsen's interactive periodic table: "
 					}
-					<a href="https://elements.wlonk.com/ElementsTable.htm">elements.wlonk.com</a></p>
-				{/* <p>{norwegian ?
+					<a href="https://elements.wlonk.com/ElementsTable.htm">elements.wlonk.com</a>
+				</p>
+			</div>
+
+			<div className="characters">
+				<h1>{norwegian ? "Kjeminavnet ditt:" : "Your chemical name:"}</h1>
+				<p>{norwegian ?
 					"Trykk på bokstavene nedenfor for å sette sammen ditt kjemiske navn!"
 					:
 					"Click the letters below to create your own chemical name!"
 				}</p>
-			</div>
 
-			<div className="characters">
-				<h1>{norwegian ? "Kjeminavnet ditt" : "Your chemistry name"}</h1>
-				<pre>{currentInput}</pre>
-				<Element {...allProps} />
-			</div> */}
+				{currentInput.split("").map(character => (
+					<pre
+						onClick={() => showMatchingElementsForLetter(character)}
+						style={{ display: "inline" }}
+					>
+						{character}
+					</pre>
+				))}
+				{/* <Element {...allProps} /> */}
 			</div>
-		</div>
+		</div >
 	);
 }
 

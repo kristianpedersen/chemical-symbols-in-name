@@ -181,7 +181,8 @@ const elements = [
 		"cpk-hex": "ffb5b5"
 	},
 	{
-		"name": "Karbon",
+		"name": "Carbon",
+		"norsk": "Karbon",
 		"appearance": null,
 		"atomic_mass": 12.011,
 		"boil": null,
@@ -3571,7 +3572,7 @@ const elements = [
 	},
 	{
 		"name": "Mercury",
-		"name": "Kvikksølv",
+		"norsk": "Kvikksølv",
 		"appearance": "silvery",
 		"atomic_mass": 200.5923,
 		"boil": 629.88,
