@@ -1,15 +1,14 @@
-import { useState } from "react"
 import styled from "styled-components"
 
 export default function Element(props) {
+	const element = props.element
 	const {
 		currentInput,
 		norwegian,
+		indices, setIndices,
+		overlapIndices, setOverlapIndices,
 		selectedElements, setSelectedElements,
-		takenIndices, setTakenIndices,
 	} = props.allProps
-	const element = props.element
-	const [availableName, setAvailableName] = useState(currentInput)
 
 	function getPositionIndices(symbol) {
 		const inputChars = currentInput.split("")
@@ -32,11 +31,23 @@ export default function Element(props) {
 		const indices = [...Array(symbol.length)].map((_, i) => position + i)
 
 		if (event.target.checked) {
-			setSelectedElements(prev => [...prev, symbol])
-			setTakenIndices(prev => [...prev, ...indices])
+			// Sorted, because otherwise their order depends on when the checkboxes were clicked
+			setIndices(prev => [...prev, position]
+				.sort((a, b) => a - b)
+			)
+			setOverlapIndices(prev => [...prev, ...indices]
+				.sort((a, b) => a - b)
+			)
+			setSelectedElements(prev => {
+				return [...prev, { symbol, indices }]
+					.sort((a, b) => a.indices[0] - b.indices[0])
+			})
 		} else {
-			setSelectedElements(prev => prev.filter(s => s !== symbol))
-			setTakenIndices(prev => prev.filter(i => !indices.includes(i)))
+			setIndices(prev => prev.filter(i => !indices.includes(i)))
+			setOverlapIndices(prev => prev.filter(i => !indices.includes(i)))
+			setSelectedElements(prev => {
+				return prev.filter(p => p.indices[0] !== position)
+			})
 		}
 	}
 
@@ -47,15 +58,21 @@ export default function Element(props) {
 			<h2>{norwegian ? element.norsk || element.name : element.name}</h2>
 			<p>({element.number}) (<span className="symbol">{element.symbol}</span>)</p>
 
-			<h2>Taken indices</h2>
-
 			{getPositionIndices(element.symbol).map(index => {
-				const cn = takenIndices.includes(index) ? "strike" : ""
+				// Create an array with either one or two indices, to correctly register two-character symbols 
+				const currentIndices = [...Array(element.symbol.length)].map((_, i) => index + i)
+				const inactiveClass = currentIndices.some(currentIndex => overlapIndices.includes(currentIndex)) ? "inactive" : ""
+
 				return (
-					<label className={cn}>
+					<label className={inactiveClass}>
 						<input
-							className={cn}
-							disabled={cn === "strike" && !selectedElements.includes(element.symbol) && selectedElements.length > 1}
+							className={inactiveClass}
+							disabled={
+								inactiveClass === "inactive"
+								&& overlapIndices.some(i => currentIndices.includes(i))
+								&& selectedElements.length > 1
+								&& !selectedElements.some(s => s.symbol === element.symbol && s.indices[0] === index)
+							}
 							name="btn"
 							onClick={event => togglePosition(event, element.symbol, index)}
 							type="checkbox"
@@ -63,7 +80,6 @@ export default function Element(props) {
 						{index}
 					</label>
 				)
-				// return <button onClick={togglePosition}>{index}</button>
 			})}
 		</ElementDiv>
 	)
@@ -74,8 +90,4 @@ const ElementDiv = styled.div`
 	display: inline-block;
 	margin: 0 .5rem;
 	padding: .5rem;
-
-	&:hover {
-		background: hsl(30, 100%, 90%);
-	}
 `

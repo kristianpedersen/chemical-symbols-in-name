@@ -4,34 +4,30 @@ import elements from "./Elements"
 import styled from "styled-components"
 import { useRef, useState } from "react"
 
-
 function App() {
-	/**
-	 * List all matches, but only fill in the ones that don't overlap.
-	 * Using my name (Kristian) as an example, Potassium (K) and Krypton (Kr) would *not* be auto-filled, giving me the option to choose.
-	 * Iodine (I) on the other hand will not overlap, so it gets added automatically.
-	 */
 	const input = useRef(null)
 	const [currentInput, setCurrentInput] = useState("")
-	const [elementName, setElementName] = useState("")
+	const [indices, setIndices] = useState([])
 	const [matches, setMatches] = useState([])
 	const [norwegian, setNorwegian] = useState(false)
+	const [overlapIndices, setOverlapIndices] = useState([])
 	const [selectedElements, setSelectedElements] = useState([])
-	const [takenIndices, setTakenIndices] = useState([])
-	const [uniqueMatches, setUniqueMatches] = useState([])
 
 	const allProps = {
 		input,
 		currentInput, setCurrentInput,
-		elementName, setElementName,
+		indices, setIndices,
 		matches, setMatches,
 		norwegian, setNorwegian,
+		overlapIndices, setOverlapIndices,
 		selectedElements, setSelectedElements,
-		takenIndices, setTakenIndices,
-		uniqueMatches, setUniqueMatches,
 	}
 
 	function getMatches(event) {
+		setSelectedElements([])
+		setOverlapIndices([])
+		setIndices([])
+		document.querySelectorAll("input").forEach(i => i.checked = false)
 		const lowerCaseName = event.target.value.toLowerCase()
 		setCurrentInput(event.target.value)
 
@@ -45,28 +41,24 @@ function App() {
 				return aIndex - bIndex
 			})
 
-		const noOverlap = allMatches
-			.map(function findIndexAndReach(current) {
+		const noOverlap = allMatches.map(
+			function findIndexAndReach(current) {
 				const indexInName = lowerCaseName.indexOf(current.symbol.toLowerCase())
 				const indexInNamePlusLength = indexInName + current.symbol.length - 1
 				return { match: current, indexInName, indexInNamePlusLength }
 			})
-			.filter(function removeIfOverlapping(currentElement, index, array) {
-				const otherElements = [...array.slice(0, index), ...array.slice(index + 1)]
-				return otherElements.every(e => {
-					const previousDoesntOverlapCurrent = (e.indexInNamePlusLength !== currentElement.indexInName)
-					const currentDoesntOverlapNext = (e.indexInName !== currentElement.indexInNamePlusLength)
-					return previousDoesntOverlapCurrent && currentDoesntOverlapNext
+			.filter(
+				function removeIfOverlapping(currentElement, index, array) {
+					const otherElements = [...array.slice(0, index), ...array.slice(index + 1)]
+					return otherElements.every(e => {
+						const previousDoesntOverlapCurrent = (e.indexInNamePlusLength !== currentElement.indexInName)
+						const currentDoesntOverlapNext = (e.indexInName !== currentElement.indexInNamePlusLength)
+						return previousDoesntOverlapCurrent && currentDoesntOverlapNext
+					})
 				})
-			}).map(e => e.match)
+			.map(e => e.match)
 
 		setMatches(allMatches)
-		setUniqueMatches(noOverlap)
-	}
-
-	function showMatchingElementsForLetter(character) {
-		const characterMatches = matches.filter(e => e.symbol.toLowerCase().includes(character))
-		setAvailableElements()
 	}
 
 	function toggleNorsk() {
@@ -100,21 +92,44 @@ function App() {
 
 			<div className="characters">
 				<h1>{norwegian ? "Kjeminavnet ditt:" : "Your chemical name:"}</h1>
-				<p>{norwegian ?
-					"Trykk på bokstavene nedenfor for å sette sammen ditt kjemiske navn!"
-					:
-					"Click the letters below to create your own chemical name!"
-				}</p>
+				<svg
+					width={(currentInput.length) * 150}
+					height={200}
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<rect
+						width={currentInput.length * 100}
+						height={100}
+						fill="white"
+					/>
+					{/* https://stackoverflow.com/a/57567670 */}
+					<foreignObject x={0} y={0} width={currentInput.length * 150} height={200}>
+						<body xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily: "serif", fontSize: "24px", textAlign: "left" }}>
+							{currentInput.split("")
+								.reduce((accumulator, current, index) => {
+									const currentElement = selectedElements[accumulator.elementIndex]
+									const indexMatch = indices.includes(index)
+									const overlapMatch = overlapIndices.includes(index)
 
-				{currentInput.split("").map(character => (
-					<pre
-						onClick={() => showMatchingElementsForLetter(character)}
-						style={{ display: "inline" }}
-					>
-						{character}
-					</pre>
-				))}
-				{/* <Element {...allProps} /> */}
+									if (currentElement !== undefined && indexMatch && overlapMatch) {
+										accumulator.name.push(
+											<span style={{ background: "lightgreen", border: "1px solid green", display: "inline-block", width: 100, height: 100 }}>
+												{currentElement.symbol}
+											</span>
+										)
+										accumulator.elementIndex++
+										if (currentElement.indices.length === 2) {
+											accumulator.skipCharIndex.push(index + 1)
+										}
+									} else if (!accumulator.skipCharIndex.includes(index)) {
+										accumulator.name.push(<span style={{ display: "inline-block", width: 100, height: 100 }}>{current}</span>)
+									}
+									return accumulator
+								}, { name: [], elementIndex: 0, skipCharIndex: [] }).name.map(e => e)
+							}
+						</body>
+					</foreignObject>
+				</svg>
 			</div>
 		</div >
 	);

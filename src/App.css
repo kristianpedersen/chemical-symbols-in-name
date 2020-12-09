@@ -60,10 +60,16 @@ img.not-available {
 }
 
 label {
+  background-color: hsl(90, 90%, 90%);
   padding: .25rem .5rem;
   margin: 0 .25rem;
 }
 
-label.strike{
-  background-color: hsl(6, 93%, 91%);
+label.inactive{
+  background-color: hsl(0, 90%, 90%);
+}
+
+span.element {
+  background: lightgreen;
+  color: green;
 }
