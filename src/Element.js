@@ -5,7 +5,7 @@ export default function Element(props) {
 	const {
 		currentInput,
 		norwegian,
-		indices, setIndices,
+		setIndices,
 		overlapIndices, setOverlapIndices,
 		selectedElements, setSelectedElements,
 	} = props.allProps
@@ -70,14 +70,14 @@ export default function Element(props) {
 							disabled={
 								inactiveClass === "inactive"
 								&& overlapIndices.some(i => currentIndices.includes(i))
-								&& selectedElements.length > 1
+								&& selectedElements.length >= 1
 								&& !selectedElements.some(s => s.symbol === element.symbol && s.indices[0] === index)
 							}
 							name="btn"
 							onClick={event => togglePosition(event, element.symbol, index)}
 							type="checkbox"
 						/>
-						{index}
+						{index + 1}
 					</label>
 				)
 			})}

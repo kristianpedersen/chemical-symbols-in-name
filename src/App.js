@@ -6,6 +6,7 @@ import { useRef, useState } from "react"
 
 function App() {
 	const input = useRef(null)
+	const img = useRef(null)
 	const [currentInput, setCurrentInput] = useState("")
 	const [indices, setIndices] = useState([])
 	const [matches, setMatches] = useState([])
@@ -28,6 +29,7 @@ function App() {
 		setOverlapIndices([])
 		setIndices([])
 		document.querySelectorAll("input").forEach(i => i.checked = false)
+
 		const lowerCaseName = event.target.value.toLowerCase()
 		setCurrentInput(event.target.value)
 
@@ -41,24 +43,17 @@ function App() {
 				return aIndex - bIndex
 			})
 
-		const noOverlap = allMatches.map(
-			function findIndexAndReach(current) {
-				const indexInName = lowerCaseName.indexOf(current.symbol.toLowerCase())
-				const indexInNamePlusLength = indexInName + current.symbol.length - 1
-				return { match: current, indexInName, indexInNamePlusLength }
-			})
-			.filter(
-				function removeIfOverlapping(currentElement, index, array) {
-					const otherElements = [...array.slice(0, index), ...array.slice(index + 1)]
-					return otherElements.every(e => {
-						const previousDoesntOverlapCurrent = (e.indexInNamePlusLength !== currentElement.indexInName)
-						const currentDoesntOverlapNext = (e.indexInName !== currentElement.indexInNamePlusLength)
-						return previousDoesntOverlapCurrent && currentDoesntOverlapNext
-					})
-				})
-			.map(e => e.match)
-
 		setMatches(allMatches)
+	}
+
+	function downloadSVG() {
+		// http://bl.ocks.org/curran/7cf9967028259ea032e8
+		const svgAsXML = (new XMLSerializer).serializeToString(img.current);
+		var dl = document.createElement("a");
+		document.body.appendChild(dl); // This line makes it work in Firefox.
+		dl.setAttribute("href", "data:image/svg+xml," + encodeURIComponent(svgAsXML));
+		dl.setAttribute("download", "test.svg");
+		dl.click();
 	}
 
 	function toggleNorsk() {
@@ -91,38 +86,66 @@ function App() {
 			</div>
 
 			<div className="characters">
-				<h1>{norwegian ? "Kjeminavnet ditt:" : "Your chemical name:"}</h1>
+				<h1>{norwegian ? "Kjeminavnet ditt er:" : "Your chemical name is:"}</h1>
+				{/* <button >{norwegian ? "Last ned .svg" : "Download .svg"}</button> */}
 				<svg
-					width={(currentInput.length) * 150}
-					height={200}
+					width={window.innerWidth}
+					height={252}
 					xmlns="http://www.w3.org/2000/svg"
+					ref={img}
 				>
-					<rect
-						width={currentInput.length * 100}
-						height={100}
-						fill="white"
-					/>
 					{/* https://stackoverflow.com/a/57567670 */}
-					<foreignObject x={0} y={0} width={currentInput.length * 150} height={200}>
-						<body xmlns="http://www.w3.org/1999/xhtml" style={{ fontFamily: "serif", fontSize: "24px", textAlign: "left" }}>
+					<foreignObject x={0} y={0} width={window.innerWidth} height={252}>
+						<body xmlns="http://www.w3.org/1999/xhtml">
 							{currentInput.split("")
-								.reduce((accumulator, current, index) => {
+								.reduce((accumulator, current, index, array) => {
 									const currentElement = selectedElements[accumulator.elementIndex]
 									const indexMatch = indices.includes(index)
 									const overlapMatch = overlapIndices.includes(index)
+									const lastIndex = index === array.length - 1
 
 									if (currentElement !== undefined && indexMatch && overlapMatch) {
+										const elementInfo = matches.find(m => m.symbol === currentElement.symbol)
+										console.log(elementInfo)
 										accumulator.name.push(
-											<span style={{ background: "lightgreen", border: "1px solid green", display: "inline-block", width: 100, height: 100 }}>
-												{currentElement.symbol}
-											</span>
+											<div style={{
+												backgroundColor: "hsl(90, 100%, 90%)",
+												border: "solid green",
+												borderWidth: lastIndex ? "1px" : "1px 0 1px 1px",
+												display: "inline-block",
+												fontSize: "24px",
+												width: 110,
+												height: 250
+											}}>
+												<p>{elementInfo.number}</p>
+												<p className="symbol">{elementInfo.symbol}</p>
+												<p className="sml">{norwegian ? elementInfo.norsk || elementInfo.name : elementInfo.name}</p>
+												<p className="sml">{elementInfo.atomic_mass}</p>
+												<p className="sml">{elementInfo.shells.join("-")}</p>
+											</div>
 										)
 										accumulator.elementIndex++
 										if (currentElement.indices.length === 2) {
 											accumulator.skipCharIndex.push(index + 1)
 										}
 									} else if (!accumulator.skipCharIndex.includes(index)) {
-										accumulator.name.push(<span style={{ display: "inline-block", width: 100, height: 100 }}>{current}</span>)
+										console.log(current)
+										accumulator.name.push(
+											<div style={{
+												border: "solid green",
+												borderWidth: lastIndex ? "1px" : "1px 0 1px 1px",
+												display: "inline-block",
+												fontSize: "24px",
+												width: 110,
+												height: 250
+											}}>
+												<p>&nbsp;</p>
+												<p className="symbol">{current} &nbsp;</p>
+												<p className="sml">&nbsp;</p>
+												<p className="sml">&nbsp;</p>
+												<p className="sml">&nbsp;</p>
+											</div>
+										)
 									}
 									return accumulator
 								}, { name: [], elementIndex: 0, skipCharIndex: [] }).name.map(e => e)
