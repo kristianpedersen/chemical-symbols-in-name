@@ -82,8 +82,7 @@ font-size: 10px;
 }
 
 span.symbol, p.symbol {
-  font-family: serif;
-  /* font-family: 'Source Code Pro', monospace; */
+  font-family: 'Source Code Pro', monospace;
 }
 
 svg {

@@ -28,7 +28,7 @@ function App() {
 		setSelectedElements([])
 		setOverlapIndices([])
 		setIndices([])
-		document.querySelectorAll("input").forEach(i => i.checked = false)
+		document.querySelectorAll("input").forEach(i => i.id !== "norsk" ? i.checked = false : i.checked = norwegian)
 
 		const lowerCaseName = event.target.value.toLowerCase()
 		setCurrentInput(event.target.value)
@@ -86,7 +86,7 @@ function App() {
 			</div>
 
 			<div className="characters">
-				<h1>{norwegian ? "Kjeminavnet ditt er:" : "Your chemical name is:"}</h1>
+				<h1>{norwegian ? "Grunnstoffnavnet ditt er:" : "Your elemental name is:"}</h1>
 				{/* <button >{norwegian ? "Last ned .svg" : "Download .svg"}</button> */}
 				<svg
 					width={window.innerWidth}
