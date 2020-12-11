@@ -63,27 +63,29 @@ function App() {
 
 	return (
 		<div className="App">
-			<NorskToggle htmlFor="norsk">
-				🇳🇴 Norsk
+			<div className="input-area">
+				<NorskToggle htmlFor="norsk">
+					🇳🇴 Norsk
 				<input type="checkbox" name="norsk" id="norsk" onChange={toggleNorsk} autoFocus />
-			</NorskToggle>
+				</NorskToggle>
 
-			<input type="text" name="query" id="query" onKeyUp={getMatches} autoFocus ref={input} />
-
-			<div className="all-matches">
+				<input type="text" name="query" id="query" onKeyUp={getMatches} autoFocus ref={input} />
 				<h1>{norwegian ? `${currentInput} inneholder:` : `${currentInput} contains:`}</h1>
+			</div>
+
+			<div className="matches">
 				{matches.map(element => (
 					<Element {...{ allProps }} {...{ element }} />
 				))}
-				<p>
-					{norwegian ?
-						"Bilder: Keith Enevoldsens interaktive periodesystem: "
-						:
-						"Images: Keith Enevoldsen's interactive periodic table: "
-					}
-					<a href="https://elements.wlonk.com/ElementsTable.htm">elements.wlonk.com</a>
-				</p>
 			</div>
+			<p>
+				{norwegian ?
+					"Bilder: Keith Enevoldsens interaktive periodesystem: "
+					:
+					"Images: Keith Enevoldsen's interactive periodic table: "
+				}
+				<a href="https://elements.wlonk.com/ElementsTable.htm">elements.wlonk.com</a>
+			</p>
 
 			<div className="characters">
 				<h1>{norwegian ? "Grunnstoffnavnet ditt er:" : "Your elemental name is:"}</h1>

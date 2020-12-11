@@ -54,7 +54,7 @@ export default function Element(props) {
 	return (
 		// <></>
 		<ElementDiv>
-			<img src={`/chemical-symbols-in-name/assets/e${String(element.number).padStart(3, "0")}.png`} width={150} />
+			<img src={`/chemical-symbols-in-name/assets/e${String(element.number).padStart(3, "0")}.png`} />
 			<h2>{norwegian ? element.norsk || element.name : element.name}</h2>
 			<p>({element.number}) (<span className="symbol">{element.symbol}</span>)</p>
 
@@ -87,7 +87,10 @@ export default function Element(props) {
 
 const ElementDiv = styled.div`
 	border: 1px solid #999;
-	display: inline-block;
+	flex: 1;
+	
+	min-width: 0;
+	min-height: 0;
 	margin: 0 .5rem;
 	padding: .5rem;
 `
