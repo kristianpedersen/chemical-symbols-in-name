@@ -12,7 +12,7 @@ export default function Element(props) {
 
 	function getPositionIndices(symbol) {
 		const inputChars = currentInput.split("")
-		return inputChars.reduce((indices, current, index, array) => {
+		return inputChars.reduce(function findSymbolOccurrences(indices, current, index, array) {
 			if (symbol.length === 1 && current.toLowerCase() === symbol.toLowerCase()) {
 				indices.push(index)
 			}
@@ -52,35 +52,35 @@ export default function Element(props) {
 	}
 
 	return (
-		// <></>
 		<ElementDiv>
 			<img src={`/chemical-symbols-in-name/assets/e${String(element.number).padStart(3, "0")}.png`} />
 			<h2>{norwegian ? element.norsk || element.name : element.name}</h2>
 			<p>({element.number}) (<span className="symbol">{element.symbol}</span>)</p>
+			<LabelContainer>
+				{getPositionIndices(element.symbol).map(function displayCheckboxes(index) {
+					// Create an array with either one or two indices, to correctly register two-character symbols 
+					const currentIndices = [...Array(element.symbol.length)].map((_, i) => index + i)
+					const inactiveClass = currentIndices.some(currentIndex => overlapIndices.includes(currentIndex)) ? "inactive" : ""
 
-			{getPositionIndices(element.symbol).map(index => {
-				// Create an array with either one or two indices, to correctly register two-character symbols 
-				const currentIndices = [...Array(element.symbol.length)].map((_, i) => index + i)
-				const inactiveClass = currentIndices.some(currentIndex => overlapIndices.includes(currentIndex)) ? "inactive" : ""
-
-				return (
-					<label className={inactiveClass}>
-						<input
-							className={inactiveClass}
-							disabled={
-								inactiveClass === "inactive"
-								&& overlapIndices.some(i => currentIndices.includes(i))
-								&& selectedElements.length >= 1
-								&& !selectedElements.some(s => s.symbol === element.symbol && s.indices[0] === index)
-							}
-							name="btn"
-							onClick={event => togglePosition(event, element.symbol, index)}
-							type="checkbox"
-						/>
-						{index + 1}
-					</label>
-				)
-			})}
+					return (
+						<ElementLabel className={inactiveClass}>
+							<input
+								className={inactiveClass}
+								disabled={
+									inactiveClass === "inactive"
+									&& overlapIndices.some(i => currentIndices.includes(i))
+									&& selectedElements.length >= 1
+									&& !selectedElements.some(s => s.symbol === element.symbol && s.indices[0] === index)
+								}
+								name="btn"
+								onClick={event => togglePosition(event, element.symbol, index)}
+								type="checkbox"
+							/>
+							{index + 1}
+						</ElementLabel>
+					)
+				})}
+			</LabelContainer>
 		</ElementDiv>
 	)
 }
@@ -88,9 +88,29 @@ export default function Element(props) {
 const ElementDiv = styled.div`
 	border: 1px solid #999;
 	flex: 1;
-	
+	justify-content: center;
 	min-width: 0;
 	min-height: 0;
+	max-width: 250px;
 	margin: 0 .5rem;
 	padding: .5rem;
+	p, span {
+		font-size: 1.5vw;
+	}
+`
+
+const LabelContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+`
+
+const ElementLabel = styled.label`
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	justify-content: center;
+	cursor: pointer;
+	input {
+		min-width: 13px;
+	}
 `
