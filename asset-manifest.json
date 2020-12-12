@@ -1,22 +1,20 @@
 {
   "files": {
-    "main.css": "/chemical-symbols-in-name/static/css/main.1ab07a0b.chunk.css",
-    "main.js": "/chemical-symbols-in-name/static/js/main.cc5db7a3.chunk.js",
-    "main.js.map": "/chemical-symbols-in-name/static/js/main.cc5db7a3.chunk.js.map",
-    "runtime-main.js": "/chemical-symbols-in-name/static/js/runtime-main.59df640a.js",
-    "runtime-main.js.map": "/chemical-symbols-in-name/static/js/runtime-main.59df640a.js.map",
-    "static/js/2.f26dfa22.chunk.js": "/chemical-symbols-in-name/static/js/2.f26dfa22.chunk.js",
-    "static/js/2.f26dfa22.chunk.js.map": "/chemical-symbols-in-name/static/js/2.f26dfa22.chunk.js.map",
-    "static/js/3.d4e35436.chunk.js": "/chemical-symbols-in-name/static/js/3.d4e35436.chunk.js",
-    "static/js/3.d4e35436.chunk.js.map": "/chemical-symbols-in-name/static/js/3.d4e35436.chunk.js.map",
+    "main.css": "/chemical-symbols-in-name/static/css/main.f67b71ec.chunk.css",
+    "main.js": "/chemical-symbols-in-name/static/js/main.947b671a.chunk.js",
+    "main.js.map": "/chemical-symbols-in-name/static/js/main.947b671a.chunk.js.map",
+    "runtime-main.js": "/chemical-symbols-in-name/static/js/runtime-main.573d30df.js",
+    "runtime-main.js.map": "/chemical-symbols-in-name/static/js/runtime-main.573d30df.js.map",
+    "static/js/2.baccd8cf.chunk.js": "/chemical-symbols-in-name/static/js/2.baccd8cf.chunk.js",
+    "static/js/2.baccd8cf.chunk.js.map": "/chemical-symbols-in-name/static/js/2.baccd8cf.chunk.js.map",
     "index.html": "/chemical-symbols-in-name/index.html",
-    "static/css/main.1ab07a0b.chunk.css.map": "/chemical-symbols-in-name/static/css/main.1ab07a0b.chunk.css.map",
-    "static/js/2.f26dfa22.chunk.js.LICENSE.txt": "/chemical-symbols-in-name/static/js/2.f26dfa22.chunk.js.LICENSE.txt"
+    "static/css/main.f67b71ec.chunk.css.map": "/chemical-symbols-in-name/static/css/main.f67b71ec.chunk.css.map",
+    "static/js/2.baccd8cf.chunk.js.LICENSE.txt": "/chemical-symbols-in-name/static/js/2.baccd8cf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.59df640a.js",
-    "static/js/2.f26dfa22.chunk.js",
-    "static/css/main.1ab07a0b.chunk.css",
-    "static/js/main.cc5db7a3.chunk.js"
+    "static/js/runtime-main.573d30df.js",
+    "static/js/2.baccd8cf.chunk.js",
+    "static/css/main.f67b71ec.chunk.css",
+    "static/js/main.947b671a.chunk.js"
   ]
 }
